@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{{request.user}}
+{{request.user.is_authenticated}}
 <legend>
     {{title}}
 </legend>

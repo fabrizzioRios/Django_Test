@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,41 +31,17 @@
       <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
     <![endif]-->
-  </head>
 
-  <body>
-{% if request.user.is_authenticated %}
-{% include "navbar.html" %}
-
-    <!-- Begin page content -->
-    <div class="container">
-        {% block content %}
-
-        Estoy en la pagina inicial
-
-        {% endblock %}
-    </div>
+{% block content %}
+  <h2>Sign up</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button href="{% url 'home' %}" type="submit">Sign up</button>
+  </form>
+      <label>
+          <a class="navbar-brand" href="{% url 'login' %}">Sign in</a>
+      </label>
+{% endblock %}
 
 {% include "footer.html" %}
-
-{% else %}
-{% include "login.html" %}
-
-{% endif %}
-    <!-- Fixed navbar -->
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://getbootstrap.com/docs/3.3/dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="https://getbootstrap.com/docs/3.3/assets/js/ie10-viewport-bug-workaround.js"></script>
-    {% block js %}
-
-    {% endblock %}
-
-  </body>
-</html>
